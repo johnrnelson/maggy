@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-backface-visibility: visible !important;
+    -ms-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+}
+
+html{
+
+}
+body {
+    /*position: relative;*/
+    height: 100%;
+    width: 100%;
+    /*background-color: #e0e0e0;*/
+    color: white;
+    background-color: black;
+    overflow: hidden;
+}
+
+a{
+    color:lightgray;
+}
+branding{
+    /*position:fixed;*/
+    display: block;
+    height:50px;
+    background-color: gray;
+    font-family: 'Arvo', serif;
+    font-size: 26px;   
+    /*vertical-align: middle; */
+    padding-top: 25px;
+    padding-left: 25px;
+}
+stationstatus{
+    display: :block;
+    height:40px;
+    /*background-color: green;*/
+        font-family: 'Arvo', serif;
+    font-size: 26px; 
+    padding-right: 50px;
+    margin-top: 15px;
+}
+.stationstatusvalue{
+        display: :block;
+    height:40px;
+    /*background-color: green;*/
+        font-family: 'Arvo', serif;
+    font-size: 26px;
+    margin-top: 15px;
+}
+actions{
+    display: block;
+    height:30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    /*background-color: blue;*/
+            font-family: 'Arvo', serif;
+    font-size: 26px;
+}
+actions a{
+    /*display: block;*/ 
+    
+    padding:10px 10px 10px 10px;
+
+    background-color: blue;
+            font-family: 'Arvo', serif;
+    font-size: 26px;
+}
+instructions{
+    display: block;
+}

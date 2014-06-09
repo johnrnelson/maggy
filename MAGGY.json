@@ -1,0 +1,54 @@
+{
+    "server": {
+        "root": "",
+        "port": 8000,
+        "host": "0.0.0.0"
+    },
+    "manager": {
+        "address": "192.168.1.126",
+        "addressxxx": "169.254.49.166"
+    },
+    "stations": {
+        "manager": {
+
+            "welcome": "Hello manager..."
+        },
+        "station1": {
+            "id": "br549",
+            "name": "Station 1/Desk 1",
+            "welcome": "do not forget somehing..."
+        },
+        "station2": {
+            "id": "br5499",
+            "name": "Station 2 (Testing Dude)",
+            "welcome": "do not forget somehing..."
+        },
+        "station3": {
+            "id": "br549x",
+            "name": "Station 3",
+            "welcome": "do not forget somehing..."
+        },
+        "station4": {
+            "id": "br549919",
+            "name": "Station 4",
+            "welcome": "do not forget somehing..."
+        },
+        "station5": {
+            "id": "br549909",
+            "name": "Station 5 (5x5)",
+            "welcome": "do not forget somehing..."
+        },
+        "station6": {
+            "id": "br549x9",
+            "name": "Station 666 - Yikes!",
+            "welcome": "do not forget somehing..."
+        },
+        "station7": {
+            "id": "br5499x999",
+            "name": "Station 7",
+            "welcome": "do not forget somehing..."
+        }
+    }
+
+
+}

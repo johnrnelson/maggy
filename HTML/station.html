@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html x-manifest="maggy.appcache">
+<head>
+  <meta charset="utf-8">
+  <title>Maggy</title>
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Enriqueta' rel='stylesheet' type='text/css'>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.min.css" rel="stylesheet">
+  
+  <link href="station.css" rel="stylesheet">
+  </head>
+  <body>
+<!-- <div>
+    
+    Station ID:
+    <br/>
+    <input id="stationid" value="setbyhostname"/>
+</div> -->
+<branding id="branding" xclass="branding">
+This is the Registration Desk update tool.
+
+</branding>
+<stationstatus id="stationstatus">
+    Status:
+    
+
+
+</stationstatus>
+    <select id="stationstatusvalue" class='stationstatusvalue' onchange="ChangeStatus()">
+        <option value="Waiting" checked>Waiting</option>
+        <option value="Ready">Ready</option>
+        <option value="Sleeping">Sleeping</option>
+        <option value="Bored">Bored</option>
+    </select>
+
+<div id="stationnotif">
+</div>
+  </body>
+</html>
+<script src="application.js" type="text/javascript" charset="utf-8"></script>
+<script src="station.js" type="text/javascript" charset="utf-8"></script>
+

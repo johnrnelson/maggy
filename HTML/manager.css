@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-backface-visibility: visible !important;
+    -ms-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    cursor: default;
+
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    /*background-color: #e0e0e0;*/
+    color: white;
+    background-color: black;
+    overflow: hidden;
+}
+
+stationlist{
+    display:block;
+    /*display:table-row;*/
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    overflow: auto;
+    
+}
+/*stationrow{
+    display:table-row;  
+
+}*/
+station{
+    position: relative;
+    display:table-row;
+    padding: 10px 10px 10px 10px;
+    left:0;
+    right:0;
+
+
+}
+
+
+address{
+    /*position: fixed;*/
+    display:table-cell;  
+    /*background-color: green;*/
+    /*width:600px;*/
+    right:0;
+    white-space:nowrap;
+    padding: 10px 10px 10px 10px;
+    border:3px solid black;
+    font-family: 'Enriqueta', serif;
+    font-size: 16px;
+        cursor: pointer;
+/*    right:300px;
+    left:0;*/
+
+}
+address:hover {
+    color: darkgray;
+    background-color: black;
+}
+
+status{
+    /*position: fixed;*/
+    display:table-cell; 
+    /*display:block;    */
+    background-color: blue;
+    width:100%;
+
+    padding: 10px 10px 10px 10px;
+    border:3px solid black;
+    font-family: 'Arvo', serif;
+    font-size: 16px;
+
+
+
+
+
+
+}
+
+status:hover {
+    color: darkgray;
+    background-color: black;
+
+}
+
+
+
+
+statustext{
+    display: block;
+    color:white;
+}
+statusdetails{
+    display: block;
+    color:gray;
+    /*height: 60px;*/
+}

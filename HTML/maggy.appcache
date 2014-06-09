@@ -1,0 +1,24 @@
+CACHE MANIFEST
+# Add outside urls to make the app faster...
+
+
+CACHE:
+https://storage.googleapis.com/40kview/40kivewsitelogo.png
+http://fonts.googleapis.com/css?family=Arvo
+http://fonts.googleapis.com/css?family=Enriqueta
+https://apis.google.com/js/client.js
+//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.min.css
+
+
+fix me
+
+
+
+FALLBACK:
+#/ offline.html
+
+
+
+NETWORK:
+*
+
