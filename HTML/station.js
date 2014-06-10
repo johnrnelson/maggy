@@ -15,8 +15,7 @@
 
     function ChangeStatus() {
         stationnotif.innerHTML = 'Sending new status...';
-
-        console.log('ccccccccccccc');
+        //we do a timeout call her because soem networks are slow and we 
+        //do not know if and when our return message will get to us..
         setTimeout(SendMessage, 5)
-
     }

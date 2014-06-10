@@ -139,9 +139,10 @@ setInterval(function() {
 
 // anything past this point is testing or playing around...
 function BounceHTMLElement(element) {
-    // console.log('asdfasdfsdf')
-    element.classList.add('bounce');
+    element.style.color = 'yellow';
+    element.classList.add('flipInX');
     setTimeout(function() {
-        element.classList.remove('bounce');
-    }, 2000);
+        element.classList.remove('flipInX');
+        element.style.color = 'white';
+    }, 3000);
 }

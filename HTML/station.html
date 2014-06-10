@@ -10,12 +10,7 @@
   <link href="station.css" rel="stylesheet">
   </head>
   <body>
-<!-- <div>
-    
-    Station ID:
-    <br/>
-    <input id="stationid" value="setbyhostname"/>
-</div> -->
+
 <branding id="branding" xclass="branding">
 This is the Registration Desk update tool.
 
@@ -24,17 +19,20 @@ This is the Registration Desk update tool.
     Status:
     
 
-
 </stationstatus>
+<!-- You can change the list of status using the below select tag... -->
     <select id="stationstatusvalue" class='stationstatusvalue' onchange="ChangeStatus()">
         <option value="Waiting" checked>Waiting</option>
         <option value="Ready">Ready</option>
         <option value="Sleeping">Sleeping</option>
         <option value="Bored">Bored</option>
+        <option value="Confused">Confused</option>
+        <option value="Bathroom Break">Bathroom Break</option>
+        <option value="Having Fun">Loving Life!</option>
     </select>
 
-<div id="stationnotif">
-</div>
+<stationnotif id="stationnotif">
+</stationnotif>
   </body>
 </html>
 <script src="application.js" type="text/javascript" charset="utf-8"></script>
