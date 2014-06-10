@@ -2,7 +2,7 @@ console.info('The client side script is starting to execute...')
 
 
 var HEART_BEAT = 1000; //1 second...
-var SERVER_BEAT_COUNT = 8; //8 beats at 1 beat per second would be...
+var SERVER_BEAT_COUNT = 4; //8 beats at 1 beat per second would be...
 
 
 
@@ -22,23 +22,14 @@ function GetStatuses() {
     });
     var returned_data = JSON.parse(returned_message);
     ProcessStatus(returned_data);
-    // var aSingleStation = {
-    //     //A blueprint of what a station should look and behave like...
-    //     address: StationIPAddress,
-    //     status: 'Welcome!',
-    //     cdate: new Date().toISOString(),
-    //     udate: new Date().toISOString(),
-    // };
-
-
 }
 
+
+//Loop through the list of stations we have and do somethign with it...
 function ProcessStatus(StatusData) {
     for (var itemID in StatusData) {
         var aSingleStation = StatusData[itemID];
-        // console.log(aSingleStation.status)
         SetStationStatus(aSingleStation);
-
     }
     console.log('Heart Beat :' + new Date());
 }
@@ -57,16 +48,21 @@ function SetStationStatus(Station) {
         stationHTMLElement = BuildBrandNewStationHTMLElement(Station.id);
     }
 
-    console.dir(Station);
+    //console.dir(Station);
 
 
+    //Server sends data as text, so convert it to a real date for comparrison...
     var udate = new Date(Station.udate);
 
-    stationHTMLElement.address.innerHTML = Station.name; // + '<br/>[' + udate + ']';
+    stationHTMLElement.address.innerHTML = Station.name;
     stationHTMLElement.address.title = udate;
-    stationHTMLElement.classList.add('bounce');
-    stationHTMLElement.onclick = test
 
+    stationHTMLElement.onclick = function(e) {
+        test(stationHTMLElement)
+    }
+
+    stationHTMLElement.status.innerHTML = Station.status;
+    BounceHTMLElement(stationHTMLElement.status)
 
 
 
@@ -77,7 +73,10 @@ function SetStationStatus(Station) {
         var htmlElement_address = document.createElement('address');
         var htmlElement_status = document.createElement('status');
         htmlElement_station.id = ElementID;
-        htmlElement_status.className = 'animated fadeInUp';
+
+        htmlElement_station.className = 'animated';
+        htmlElement_address.className = 'animated';
+        htmlElement_status.className = 'animated';
 
         htmlElement_station.appendChild(htmlElement_address);
         htmlElement_station.appendChild(htmlElement_status);
@@ -86,11 +85,13 @@ function SetStationStatus(Station) {
         htmlElement_station.status = htmlElement_status;
 
 
-
         function CreateStatusDetails(StatusHTMLElement) {
 
             var htmlElement_statusText = document.createElement('statustext');
             var htmlElement_statusDetails = document.createElement('statusdetails');
+            htmlElement_statusText.statustext = statustext;
+            // htmlElement_statusDetails = statusdetails;
+
 
             htmlElement_statusText.innerHTML = Station.status;
             htmlElement_statusDetails.innerHTML = 'Status Details:';
@@ -102,9 +103,7 @@ function SetStationStatus(Station) {
             StatusHTMLElement.statustext = htmlElement_statusText;
 
         }
-
-        CreateStatusDetails(htmlElement_station.status);
-        htmlElement_station.status.statustext = "Station.stat"
+        // CreateStatusDetails(htmlElement_station.status);
 
         //finnally.... add this bad boy to the html element that was definded in the host page...
         document.getElementById('stationlist').appendChild(htmlElement_station);
@@ -117,18 +116,16 @@ function SetStationStatus(Station) {
 
 } //end SetStationStatus......
 
-function InspectStation(StationHTMLElement) {
-    StationHTMLElement.style.display = 'none'
-}
-
+/* 
+Lets get all station information at one time. This usualy happens when you refresh the page or 
+are debugging...
+*/
 RefreshStatuses();
 
 
 
 var myBeatCount = 0;
-
 setInterval(function() {
-
     myBeatCount++;
 
     if (myBeatCount > SERVER_BEAT_COUNT) {
@@ -140,7 +137,11 @@ setInterval(function() {
 
 
 
-// grr
-function test() {
-    console.log('asdfasdfsdf')
+// anything past this point is testing or playing around...
+function BounceHTMLElement(element) {
+    // console.log('asdfasdfsdf')
+    element.classList.add('bounce');
+    setTimeout(function() {
+        element.classList.remove('bounce');
+    }, 2000);
 }

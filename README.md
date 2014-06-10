@@ -2,7 +2,7 @@
 Simple Station Networking Example
 
 # Goal 
-The goal of this super fantastic awesomeness is show how much you can do with just a little bit if code and some inspiration from wherever you can find it.
+The goal of this super fantastic awesomeness is to show how much you can do with just a little bit if code and some inspiration from wherever you can find it.
 
 A quick note about  `JavaScript`: It is most likely not what you think. Focus less on the history of the language or what you thought you knew about it and more on the code and what it's doing. Make the decision for yourself which computer language you like best and start to love it because computers are invading our boarders in mass quantities and they are doing the jobs we don't want to do ourselves. We better start to speak a language they can understand because it is getting awefuly expensive and cost prohibitive to hire an interpreter (see [computer programmer](http://en.wikipedia.org/wiki/Programmer)) and they can be found everywhere we look. Rumors have it they don't even have souls!!!
 

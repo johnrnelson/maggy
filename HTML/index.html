@@ -47,9 +47,17 @@ the role of "Manager" at a time.
   
 </ul>
 <p>
-To add more stations, edit the <a target="_blank" href="maggy.json">maggy.json</a> file. Pay close attention to the 
+To add more stations, edit the <a target="_blank" href="JavaScript:ViewSource('maggy.json');" href="maggy.json">maggy.json</a> file. Pay close attention to the 
 punctuation and symbols. Other than that, it's all plain engligh. :-)
-
+</p>
+<p> 
+To add most status items just edit the <a target="_blank" href="JavaScript:ViewSource('HTML/manager.html?id=manager');">station.html</a> file using the html element where the ID is equal to "stationstatusvalue".
 </div>
   </body>
 </html>
+<script>
+function ViewSource (URL) {
+  // debugger;
+  window.location='view-source:'+window.location.href+URL;
+}
+</script>
