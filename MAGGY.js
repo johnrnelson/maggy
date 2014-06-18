@@ -20,8 +20,13 @@ try {
 // Configure our HTTP server to respond to network requests...
     var server = http.createServer(MaggyService);
 
+
+
 // Listen on port 8000, IP defaults to 127.0.0.1 or localhost...
-    server.listen(ApplicationData.server.port, ApplicationData.server.host);
+    // server.listen(ApplicationData.server.port, ApplicationData.server.host);
+server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
+
+
 
 
 // Put a friendly message on the terminal
