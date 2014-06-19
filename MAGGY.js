@@ -23,8 +23,9 @@ try {
 
 
 // Listen on port 8000, IP defaults to 127.0.0.1 or localhost...
-    // server.listen(ApplicationData.server.port, ApplicationData.server.host);
+/ server.listen(ApplicationData.server.port, ApplicationData.server.host);
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
+
 
 
 
@@ -63,8 +64,7 @@ function MaggyService(Request, Response) {
                 });
 
                 var clientResponseData = JSON.parse(clientResponsePostBody);
-//                var actualStation;
-//                request["socket"]["remoteAddress"]
+
 
                 var actualStation = ApplicationData.stations[query.id];
 
@@ -75,12 +75,8 @@ function MaggyService(Request, Response) {
                     var response2managers_request = ManagerProcessor(clientResponseData);
                     GLOBAL.managercheckdate = new Date();
 
-//                    var updates_since_last_checked = ApplicationCode.Stations.GetUpdates(actualStation.udate);
-//                    actualStation.udate = new Date().toISOString();
-//                    Response.end(JSON.stringify(updates_since_last_checked));
                     Response.end(response2managers_request);
                 } else {
-//                    var actualStation = ApplicationCode.Stations.Lookup(Request.connection.remoteAddress);
                     actualStation.status = clientResponseData.status;
                     actualStation.udate = new Date().toISOString();
 
