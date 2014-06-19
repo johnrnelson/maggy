@@ -18,15 +18,16 @@ try {
     var server = http.createServer(MaggyService);
 
 
- /*
+    /*
  To debug on c9.io, use the process object, otherwise use whatever is inthe config file..
  */
- var isDebugMode = true;
- if(isDebugMode){
-    server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
-}else{
-    server.listen(ApplicationData.server.port, ApplicationData.server.host);
-}
+    var isDebugMode = true;
+    if (isDebugMode) {
+        server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
+    }
+    else {
+        server.listen(ApplicationData.server.port, ApplicationData.server.host);
+    }
     // Put a friendly message on the terminal...
     console.log("Server running at http://127.0.0.1:8000/");
 

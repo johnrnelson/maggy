@@ -8,7 +8,7 @@ var stations = {
     STATIONS: [],
 
     //To look things up.. lets pass in all we know about the request...
-    Lookup: function (StationIPAddress) {
+    Lookup: function(StationIPAddress) {
         for (var i = this.STATIONS.length - 1; i >= 0; i--) {
             var aSingleStation = this.STATIONS[i];
             if (aSingleStation.address == StationIPAddress) {
@@ -23,24 +23,25 @@ var stations = {
             status: 'Welcome!',
             cdate: new Date().toISOString(),
             udate: new Date().toISOString(),
-            notify:'Ok you are all set to use this tool'
+            notify: 'Ok you are all set to use this tool'
         };
         this.STATIONS.push(aSingleStation);
         return aSingleStation;
     },
-    GetUpdates:function(LastDateChecked){
-        var updated=[];
-        if(!LastDateChecked){
+    GetUpdates: function(LastDateChecked) {
+        var updated = [];
+        if (!LastDateChecked) {
             return updated;
         }
-        for(var station in ApplicationData.stations){
+        for (var station in ApplicationData.stations) {
             var aSingleStation = ApplicationData.stations[station];
-            if (!aSingleStation.id){
+            if (!aSingleStation.id) {
 
-            }else{
+            }
+            else {
                 var stationDate = new Date(aSingleStation.udate);
                 var ldate = new Date(LastDateChecked);
-                if ( stationDate>ldate ) {
+                if (stationDate > ldate) {
                     updated.push(aSingleStation);
                 }
             }
@@ -54,4 +55,3 @@ var stations = {
 //Anyone using this module can access the our stations object
 //by going through the exports... 
 exports.Stations = stations;
-

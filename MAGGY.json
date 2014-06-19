@@ -40,7 +40,7 @@
         },
         "station6": {
             "id": "br549x9",
-            "name": "Station 666 - Yikes!",
+            "name": "Station 6 - This other station!",
             "welcome": "do not forget somehing..."
         },
         "station7": {
@@ -49,6 +49,5 @@
             "welcome": "do not forget somehing..."
         }
     }
-
 
 }

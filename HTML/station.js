@@ -1,6 +1,5 @@
     console.info('The client side script is starting to execute...');
 
-
     var stationstatusvalue = document.getElementById('stationstatusvalue');
     var stationnotif = document.getElementById('stationnotif');
 

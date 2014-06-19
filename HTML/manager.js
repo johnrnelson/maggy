@@ -5,8 +5,6 @@ var HEART_BEAT = 1000; //1 second...
 var SERVER_BEAT_COUNT = 4; //8 beats at 1 beat per second would be...
 
 
-
-
 function RefreshStatuses() {
     var returned_message = MessagePump({
         request: 'refresh'
@@ -90,8 +88,6 @@ function SetStationStatus(Station) {
             var htmlElement_statusText = document.createElement('statustext');
             var htmlElement_statusDetails = document.createElement('statusdetails');
             htmlElement_statusText.statustext = statustext;
-            // htmlElement_statusDetails = statusdetails;
-
 
             htmlElement_statusText.innerHTML = Station.status;
             htmlElement_statusDetails.innerHTML = 'Status Details:';
@@ -103,7 +99,6 @@ function SetStationStatus(Station) {
             StatusHTMLElement.statustext = htmlElement_statusText;
 
         }
-        // CreateStatusDetails(htmlElement_station.status);
 
         //finnally.... add this bad boy to the html element that was definded in the host page...
         document.getElementById('stationlist').appendChild(htmlElement_station);
