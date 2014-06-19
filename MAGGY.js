@@ -9,36 +9,33 @@ var ApplicationCode = require('./ApplicationCode/Station')
 
 GLOBAL.ApplicationData = null;
 try {
-//Now we setup our configuration stuff. Keep it clean, simple, and most of all... NOT BORING!!!
+    //Now we setup our configuration stuff. Keep it clean, simple, and most of all... NOT BORING!!!
     ApplicationData = JSON.parse(fs.readFileSync('MAGGY.json', 'utf8'));
 
 
-//Before we do anything.. load up our HTML and keep it in memeory. We don't want to read and write
-//files too much because the network traffic and small size of the html we actually have.. AND HTML SUCKS!!!!
-//ApplicationCode.ReadHTMLAllAtOnece();
 
-// Configure our HTTP server to respond to network requests...
+    // Configure our HTTP server to respond to network requests...
     var server = http.createServer(MaggyService);
 
 
-
-// Listen on port 8000, IP defaults to 127.0.0.1 or localhost...
-/ server.listen(ApplicationData.server.port, ApplicationData.server.host);
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
-
-
-
-
-
-// Put a friendly message on the terminal
+ /*
+ To debug on c9.io, use the process object, otherwise use whatever is inthe config file..
+ */
+ var isDebugMode = true;
+ if(isDebugMode){
+    server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
+}else{
+    server.listen(ApplicationData.server.port, ApplicationData.server.host);
+}
+    // Put a friendly message on the terminal...
     console.log("Server running at http://127.0.0.1:8000/");
 
-} catch (ERROR) {
+} //Ok done with trying... catch any errors that might happen and kick it to the console...
+catch (ERROR) {
     console.log("Error reading the application configuration file!!!!!!!!!\r\n\r\n ****************************************************** ");
     console.log('Error Type:' + ERROR.type + '\t' + ERROR.message);
-//    console.log(ERROR.stack);
     console.log("\r\n ****************************************************** \r\n\r\n");
-//    throw("Error reading config file...")
+
 }
 
 function MaggyService(Request, Response) {
@@ -50,134 +47,102 @@ function MaggyService(Request, Response) {
 
     switch (headders.station_type) {
 
-        case "desk":
-            var clientResponsePostBody = "";
-            Request.setEncoding('utf8');
+    case "desk":
+        var clientResponsePostBody = "";
+        Request.setEncoding('utf8');
 
-            Request.on('data', function (data) {
-                clientResponsePostBody += data;
+        Request.on('data', function(data) {
+            clientResponsePostBody += data;
+        });
+        Request.on('end', function() {
+
+            Response.writeHead(200, {
+                "Content-Type": "application/json"
             });
-            Request.on('end', function () {
 
-                Response.writeHead(200, {
-                    "Content-Type": "application/json"
-                });
-
-                var clientResponseData = JSON.parse(clientResponsePostBody);
-
-
-                var actualStation = ApplicationData.stations[query.id];
+            var clientResponseData = JSON.parse(clientResponsePostBody);
+            var actualStation = ApplicationData.stations[query.id];
 
 
 
 
-                if (query.id == 'manager') {
-                    var response2managers_request = ManagerProcessor(clientResponseData);
-                    GLOBAL.managercheckdate = new Date();
+            if (query.id == 'manager') {
+                var response2managers_request = ManagerProcessor(clientResponseData);
+                GLOBAL.managercheckdate = new Date();
 
-                    Response.end(response2managers_request);
-                } else {
-                    actualStation.status = clientResponseData.status;
-                    actualStation.udate = new Date().toISOString();
+                Response.end(response2managers_request);
+            }
+            else {
+                actualStation.status = clientResponseData.status;
+                actualStation.udate = new Date().toISOString();
 
-                    actualStation.notify = "Status changed as of " + new Date();
-                    Response.end(JSON.stringify(actualStation));
-                }
-
-
-//
-//                if (clientResponseData.id == 'manager') {
-//
-//                    Response.end(JSON.stringify(ApplicationCode.Stations.STATIONS));
-//
-//
-//                } else {
-//                    if (!actualStation.displayid) {
-//                        actualStation.id = clientResponseData.id;
-//                    }
-//                    actualStation.status = clientResponseData.status;
-//                    Response.end(JSON.stringify(actualStation));
-//
-//                }
-
-
-            });
-            break;
-
-
-        default: //if all else fails then we fall back on this bad boy...
-            switch (pathname) {
-                case "/manager":
-                    pathname = '/manager.html';
-//                    Response.writeHead(200, {
-//                        "Content-Type": "text/html"
-//                    });
-//
-//                    Response.end(ApplicationCode.Stations.HTMLManager);
-
-                    break;
-                case "/station":
-                    pathname = '/station.html';
-//                    Response.writeHead(200, {
-//                        "Content-Type": "text/html"
-//                    });
-//
-//                    Response.end(ApplicationCode.Stations.HTMLStation);
-
-                    break;
-                default:
-                    if ((pathname == '') | (pathname == '/')) {
-                        pathname = 'HTML/index.html'
-                    }
-
-
-                    break;
-
+                actualStation.notify = "Status changed as of " + new Date();
+                Response.end(JSON.stringify(actualStation));
             }
 
-var path2file = path.join(__dirname, pathname);
-            fs.readFile(path2file, 'utf8', function (err, data) {
-//                if ('HTML' + path == 'HTML/maggy.appcache'){
-//                    fuck=GetFileTypeByFilePath(path);
-//                    grrr=3;
-//                }
 
-                if (err) {
-                    console.log(path2file)
-                    Response.writeHead(200, {
-                        "Content-Type": "text/html"
-                    });
+        });
+        break;
 
-                    Response.end('ERROR READING FILE');
-                } else {
-                    Response.writeHead(200, {
-                        "Content-Type": GetFileTypeByFilePath(pathname)
-                    });
 
-                    Response.end(data);
-                }
-            });
+    default:
+        //if all else fails then we fall back on this bad boy...
+        switch (pathname) {
+        case "/manager":
+            pathname = '/manager.html';
             break;
+        case "/station":
+            pathname = '/station.html';
+            break;
+        default:
+            if ((pathname == '') | (pathname == '/')) {
+                pathname = 'HTML/index.html'
+            }
+            break;
+        }
+
+        var path2file = path.join(__dirname, pathname);
+        fs.readFile(path2file, 'utf8', function(err, data) {
+            if (err) {
+                console.log(path2file)
+                Response.writeHead(200, {
+                    "Content-Type": "text/html"
+                });
+
+                Response.end('ERROR READING FILE');
+            }
+            else {
+                Response.writeHead(200, {
+                    "Content-Type": GetFileTypeByFilePath(pathname)
+                });
+
+                Response.end(data);
+            }
+        });
+        break;
     }
 }
 
 function ManagerProcessor(RequestedJSON) {
     var returned_value = {};
     switch (RequestedJSON.request) {
-        case "refresh":
-            returned_value = ApplicationCode.Stations.GetUpdates("2011/02/01");
-            break;
-        case "statusupdate":
-            returned_value = ApplicationCode.Stations.GetUpdates(GLOBAL.managercheckdate);
-            break;
-        default:
-            returned_value.notify = "unknown..."
-            break;
+    case "refresh":
+        returned_value = ApplicationCode.Stations.GetUpdates("2011/02/01");
+        break;
+    case "statusupdate":
+        returned_value = ApplicationCode.Stations.GetUpdates(GLOBAL.managercheckdate);
+        break;
+    default:
+        returned_value.notify = "unknown..."
+        break;
     }
 
     return JSON.stringify(returned_value);
 }
 
+
+//Simple lookup to get the extension of a file and figure out which MIME type to use for 
+//out bound files using HTTP...
 function GetFileTypeByFilePath(FilePath) {
     var DEFAULT_MIME = 'application/octet-stream';
     var index = FilePath.lastIndexOf(".");
